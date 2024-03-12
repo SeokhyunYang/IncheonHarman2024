@@ -3,7 +3,7 @@
 int test01();
 void test02(int a);
 
-// 깃허브에서 소스 수정.
+// 깃허브에서 소스 수정..
 main()
 {
 	// test01();
