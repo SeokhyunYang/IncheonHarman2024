@@ -1,0 +1,12 @@
+﻿  test03a.c
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(25,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(54,10): warning C4477: 'printf' : 서식 문자열 '%08x'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'char *'입니다.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(54,10): warning C4313: 'printf': 서식 문자열의 '%x'이(가) char *' 형식의 인수 2과(와) 충돌합니다.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(47,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(49,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(71,9): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(71,9): message : 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(72,9): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(72,9): message : 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
+C:\Users\SYSTEM-00\source\repos\Work\test03\test03\test03a.c(66,8): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  test03a.vcxproj -> C:\Users\SYSTEM-00\source\repos\Work\test03a\x64\Debug\test03a.exe

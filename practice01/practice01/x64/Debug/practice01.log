@@ -1,0 +1,11 @@
+﻿  prac01.c
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(56,17): warning C4013: 'toupper'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(42,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(93,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(95,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(121,9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(151,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(182,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(184,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\SYSTEM-00\source\repos\Work\practice01\practice01\prac01.c(258,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  practice01.vcxproj -> C:\Users\SYSTEM-00\source\repos\Work\practice01\x64\Debug\practice01.exe

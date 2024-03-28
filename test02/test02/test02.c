@@ -2,21 +2,26 @@
 
 int test01();
 void test02(int a);
+void test03();
+void Copy(char* p1, char* p2);
+void Dump(char* p, int len);
 
-// ê¹ƒí—ˆë¸Œì—ì„œ ì†ŒìŠ¤ ìˆ˜ì •
+// ±êÇãºê¿¡¼­ ¼Ò½º ¼öÁ¤
 main()
 {
 	// test01();
-	test02(1);
+	// test02(1);
+	test03();
 }
 
 
 int test01()
 {
-	char* str[] = { "Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine", }; // ë¬¸ìì—´ í¬ì¸í„° ë°°ì—´
+	char* str[] = { "Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine", }; // ¹®ÀÚ¿­ Æ÷ÀÎÅÍ ¹è¿­
 	char c = 0;
-	printf("ìˆ«ì í‚¤ë¥¼ ì…ë ¥í•˜ì„¸ìš”. í•´ë‹¹í•˜ëŠ” ì˜ë‹¨ì–´ë¥¼ ì•Œë ¤ë“œë¦¬ê² ìŠµë‹ˆë‹¤.\n");
-	printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•˜ë ¤ë©´ 'Q'í‚¤ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n");
+	printf("¼ıÀÚ Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä. ÇØ´çÇÏ´Â ¿µ´Ü¾î¸¦ ¾Ë·Áµå¸®°Ú½À´Ï´Ù.\n");
+	printf("ÇÁ·Î±×·¥À» Á¾·áÇÏ·Á¸é 'Q'Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n");
+
 
 	int n = 1;
 	while (n)
@@ -30,108 +35,146 @@ int test01()
 
 }
 
-void test02(int a)	// ë¬¸ìì—´ê³¼ ë¬¸ìë°°ì—´
+void test02(int a)	// ¹®ÀÚ¿­°ú ¹®ÀÚ¹è¿­
 {
 	char ca[] = "Hello";	// ca[0]:'H' ... ca[4]:'o' ca[5]:\0
-	for (int i = 0; i < 10; i++)	// 0~5
+	for (int i = 0; i < 6; i++)	// 0~5
 	{
-		printf("ca[%d] : %c (%02x)\n", i, ca[i], ca[i]);
+		printf("ca[%d] : %c (%02x) [%08x]\n", i, ca[i], ca[i], ca + i);
 	}
-	ca[2] -= 1;
-	ca[3] -= 1;
-	for (int i = 0; i < 10; i++)	// 0~5
+
+	int ia[] = { 10,20,30,40,50 };
+	for (int i = 0; i < 6; i++)	// 0~5
 	{
-		printf("ca[%d] : %c (%02x)\n", i, ca[i], ca[i]);
+		printf("ia[%d] : %d (%08x) [%08x]\n", i, ia[i], ia[i], ia + i);
+	}
+
+	int ia2[3][2] = { 10,20,30,40,50,60 };
+	for (int y = 0; y < 3; y++)	// 0~2
+	{
+		for (int x = 0; x < 2; x++)	// 0~1
+			printf("ia1[%d][%d] : %d [%08x]\n", y, x, ia2[y][x], *(ia2 + 2 * y + x));
 	}
 }
 
+void test03()
+{
+	char buf[100];	// ¾ÈÀü ¸Ş¸ğ¸® °ø°£ È®º¸
+	char* pBuf;		// ¾ÈÀü ¸Ş¸ğ¸® °ø°£ÁßÀÇ Ãâ·Â À§Ä¡
+	unsigned int addr;		// Ãâ·Â À§Ä¡ ÁöÁ¤À» À§ÇÑ ÀÔ·Âº¯¼ö(ÁÖ¼Ò)
+	char kBuf[100];	// Ãâ·Â ¹®ÀÚ¿­ ÀÔ·Â°ø°£
 
-	// ifë¬¸
-	/*
-	while (n)
+	printf("¾ÈÀü°ø°£ÀÇ ÁÖ¼Ò´Â %d[%08x] ÀÔ´Ï´Ù.\n", (unsigned int)buf, (unsigned int)buf);
+	printf("ÀÔ·ÂÀ» ½ÃÀÛÇÒ ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+	scanf("%d", &addr);	// ¾ÈÀü ¸Ş¸ğ¸® °ø°£ ÁÖ¼Ò Âü°í
+	pBuf = buf + addr;
+	printf("¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä : ");
+	scanf("%s", kBuf);
+	Copy(pBuf, kBuf);	// ¹®ÀÚ¿­ º¹»ç
+	Dump(buf, 100);
+}
+
+void Copy(char* p1, char* p2)
+{
+	while (*p2) *p1++ = *p2++; *p1 = 0;
+}
+
+void Dump(char *p, int len)	// ¸Ş¸ğ¸® °ø°£ Ãâ·Â ÇÔ¼ö
+{
+	for (int i = 0; i < len; i++)	// ¾ÈÀü ¸Ş¸ğ¸® °ø°£ ´ıÇÁ
 	{
-		printf(">");
-		c = getch();	// no echo : í‚¤ê°’ì„ ì¶œë ¥í•˜ì§€ ì•Šê³  ë°˜í™˜
-		// getchar ëŠ” scanfì²˜ëŸ¼ enter í•„ìš”
-
-		if (c == '1')
-			printf("%c : One\n", c);
-		else if (c == '2')
-			printf("%c : Two\n", c);
-		else if (c == '3')
-			printf("%c : Three\n", c);
-		else if (c == '4')
-			printf("%c : Four\n", c);
-		else if (c == '5')
-			printf("%c : Five\n", c);
-		else if (c == '6')
-			printf("%c : Six\n", c);
-		else if (c == '7')
-			printf("%c : Seven\n", c);
-		else if (c == '8')
-			printf("%c : Eight\n", c);
-		else if (c == '9')
-			printf("%c : Nine\n", c);
-		else if (c == '0')
-			printf("%c : Zero\n", c);
-		else if (c | 0x20 == 'q')
-		{
-			printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
-			break;
-		}
-		else
-			printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n");
+		if(i % 16 == 0)	printf("\n%08x ", p);
+		if (i % 8 == 0) printf("   ");
+		printf("%02x ", (unsigned char)*p++);
 	}
-	*/
+}
 
-	// switchë¬¸
-	/*
-	while (n)
+// if¹®
+/*
+while (n)
+{
+	printf(">");
+	c = getch();	// no echo : Å°°ªÀ» Ãâ·ÂÇÏÁö ¾Ê°í ¹İÈ¯
+	// getchar ´Â scanfÃ³·³ enter ÇÊ¿ä
+
+	if (c == '1')
+		printf("%c : One\n", c);
+	else if (c == '2')
+		printf("%c : Two\n", c);
+	else if (c == '3')
+		printf("%c : Three\n", c);
+	else if (c == '4')
+		printf("%c : Four\n", c);
+	else if (c == '5')
+		printf("%c : Five\n", c);
+	else if (c == '6')
+		printf("%c : Six\n", c);
+	else if (c == '7')
+		printf("%c : Seven\n", c);
+	else if (c == '8')
+		printf("%c : Eight\n", c);
+	else if (c == '9')
+		printf("%c : Nine\n", c);
+	else if (c == '0')
+		printf("%c : Zero\n", c);
+	else if (c | 0x20 == 'q')
 	{
-		printf(">");
-		c = getch();	// no echo : í‚¤ê°’ì„ ì¶œë ¥í•˜ì§€ ì•Šê³  ë°˜í™˜
-
-		switch (c)
-		{
-		case '1':
-			printf("%c : One\n", c);
-			break;
-		case '2':
-			printf("%c : Two\n", c);
-			break;
-		case '3':
-			printf("%c : Three\n", c);
-			break;
-		case '4':
-			printf("%c : Four\n", c);
-			break;
-		case '5':
-			printf("%c : Five\n", c);
-			break;
-		case '6':
-			printf("%c : Six\n", c);
-			break;
-		case '7':
-			printf("%c : Seven\n", c);
-			break;
-		case '8':
-			printf("%c : Eight\n", c);
-			break;
-		case '9':
-			printf("%c : Nine\n", c);
-			break;
-		case '0':
-			printf("%c : Zero\n", c);
-			break;
-		case 'Q':
-		case 'q':
-			printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
-			n = 0;
-			break;
-		default:
-			printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n");
-			break;
-
-		}
+		printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n");
+		break;
 	}
-	*/
+	else
+		printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+}
+*/
+
+// switch¹®
+/*
+while (n)
+{
+	printf(">");
+	c = getch();	// no echo : Å°°ªÀ» Ãâ·ÂÇÏÁö ¾Ê°í ¹İÈ¯
+
+	switch (c)
+	{
+	case '1':
+		printf("%c : One\n", c);
+		break;
+	case '2':
+		printf("%c : Two\n", c);
+		break;
+	case '3':
+		printf("%c : Three\n", c);
+		break;
+	case '4':
+		printf("%c : Four\n", c);
+		break;
+	case '5':
+		printf("%c : Five\n", c);
+		break;
+	case '6':
+		printf("%c : Six\n", c);
+		break;
+	case '7':
+		printf("%c : Seven\n", c);
+		break;
+	case '8':
+		printf("%c : Eight\n", c);
+		break;
+	case '9':
+		printf("%c : Nine\n", c);
+		break;
+	case '0':
+		printf("%c : Zero\n", c);
+		break;
+	case 'Q':
+	case 'q':
+		printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n");
+		n = 0;
+		break;
+	default:
+		printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n");
+		break;
+
+	}
+}
+*/
