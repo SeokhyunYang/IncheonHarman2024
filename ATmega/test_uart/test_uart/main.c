@@ -54,16 +54,40 @@ int main(void)
 	initUART0();
     char a = '0';
 	int i = 0;
-	uPuts("안녕하세요..... \r\n");
+	//uPuts("안녕하세요..... \r\n");
+	
+	int read;
+	ADC_init(0);				// AD 변환기 초기화
 	
 	while (1)
     {
 		//uPutc(a++);
 		//if(a > '9') a = '0';
 		
-		sprintf(buf, "ATmega128 터미널 출력 테스트...#%d\r\n", i++); bPrint();
+		//sprintf(buf, "ATmega128 터미널 출력 테스트...#%d\r\n", i++); bPrint();
 		_delay_ms(1000);
 		
+		read = read_ADC();		// 가변저항 값 읽기
+		sprintf(buf, "#%d\r\n", read); bPrint();
     }
 }
 
+
+void ADC_init(unsigned char channel)
+{
+	ADMUX |= (1 << REFS0); 		// AVCC를 기준 전압으로 선택
+	
+	ADCSRA |= 0x07;				// 분주비 설정
+	ADCSRA |= (1 << ADEN);		// ADC 활성화
+	ADCSRA |= (1 << ADFR);		// 프리 러닝 모드
+
+	ADMUX = ((ADMUX & 0xE0) | channel);	// 채널 선택
+	ADCSRA |= (1 << ADSC);		// 변환 시작
+}
+
+int read_ADC(void)
+{
+	while(!(ADCSRA & (1 << ADIF)));	// 변환 종료 대기
+	
+	return ADC;					// 10비트 값을 반환
+}

@@ -1,0 +1,8 @@
+git add *
+
+git commit -m 1
+
+git config --global user.email "seokhyun9554@gmail.com"
+git config --global user.name "SeokhyunYang"
+
+git push
